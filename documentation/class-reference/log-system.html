@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<title>Documentation - NKStudios</title>
+	<link rel="stylesheet" type="text/css" href="/templates/impact/screen.css?v5" />
+	<link rel="Shortcut Icon" href="/templates/impact/favicon.png" />
+	
+	<script type="text/javascript" src="/templates/impact/jquery-1.4.3.min.js"></script>
+	<script type="text/javascript" src="/templates/impact/impact.js?v5></script>
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-571256-10']);
+		_gaq.push(['_trackPageview']);
+		
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gs, s);
+		})();
+	</script>
+</head>
+	
+<body>
+<div id="title">
+	<div class="content">
+		<a href="/" id="impact"><img src="/templates/impact/impact.png" alt="Impact"/></a>
+
+		<div id="menu">
+			<!-- <a href="/buy-impact.html">Buy</a> -->
+			<a href="/documentation.html">Docs</a>
+			<!-- <a href="/tools.html">Tools</a> -->
+			<a href="http://www.renzhemao.com/bbb/index.php">Forums</a>
+			<!-- <a href="/blog.html">Blog</a> -->
+		</div>
+	</div>
+	<div class="clear"></div>
+</div>
+
+<div id="breadcrumbs">
+	<div class="content">
+		<h1 class="content">
+			<a href="/documentation.html">Documentation</a> <span class="sub">&raquo;</span>
+			<a href="/documentation/class-reference.html">Class Reference</a> <span class="sub">&raquo;</span>
+			 LogSystem
+		</h1>
+	</div>
+</div>
+
+<div class="wideContent">
+	<div id="sidebar"></div>
+	<div id="content">
+		<h2 id='description'>Description</h2>
+
+<p>You can use <code>LogSystem</code> with static method like this: <pre class='actionscript'>
+class TestA
+{
+	private function TestFunction():void
+	{
+		Log.trace("TestA.TestFunction", "this is a test trace log.");
+	}
+}
+</pre> See details in <a href='#main_static_function'>Main Static Function</a>.</p>
+
+<p>Also, you can also use <code>LogSystem</code> with a class&#8217;s member variable like this: <pre class='actionscript'>
+class TestA
+{
+	private var m_log:Log;<br />
+	public function TestA():void
+	{
+		m_log = new Log(this);
+		m_log.trace("TestA", "this is a test trace log.");
+	}
+}
+</pre> See details in <a href='#main_functions'>Main Functions</a>.</p>
+
+<p><strong>Note</strong>: All log will be write to <code>Flash Builder Console</code> by default.</p>
+
+<h2 id='module_definition'>Module Definition</h2>
+
+<p><code>import com.tencent.fge.foundation.log.client</code></p>
+
+<p>Log config in <code>plugin.xml</code> file <code>&lt;Config&gt; -&gt; &lt;Global&gt; -&gt; &lt;Log /&gt;</code> tag:</p>
+
+<ul>
+<li><code>useConfig=&quot;true&quot;</code> - for using <code>plugin.xml</code>&#8217;s log config.</li>
+
+<li><code>logTarget=&quot;0&quot;</code> - for using specify the target type</li>
+
+<li><code>so=&quot;tnt,7&quot;</code> - when <code>outTarget</code> is <code>Log.OUT2SO</code>, this has two param:<code>name = &quot;tnt&quot;</code> is the name of the game in the <code>SLLog, </code>.<code>keepDate = 7</code>, the date of the log saved in local as <code>SharedObject</code>.</li>
+
+<li><code>trace=&quot;true&quot;</code> - for open <code>Log.trace()</code> log.</li>
+
+<li><code>warn=&quot;true&quot;</code> - for open <code>Log.warn()</code> log.</li>
+
+<li><code>error=&quot;true&quot;</code> - for open <code>Log.error()</code> log.</li>
+
+<li><code>debug=&quot;true&quot;</code> - for open <code>Log.debug()</code> log.</li>
+
+<li><code>exthrow=&quot;false&quot;</code> - for open <code>Log.exthrow()</code> log.</li>
+</ul>
+
+<h2 id='main_static_function'>Main Static Function</h2>
+
+<h3 id='loginitializeuseconfig_outtarget_customoutput_param'>Log.initialize(useConfig, outTarget, customOutput, param)</h3>
+
+<ul>
+<li><code>useConfig:Boolean</code> - <code>true</code> for using Log config in <code>plugin.xml</code></li>
+
+<li><code>outTarget:int</code></li>
+
+<li><code>customOutput:ICustomOutput=null</code></li>
+
+<li><code>param:Object=null</code></li>
+</ul>
+
+<h3 id='logsetlogtargetouttarget_param'>Log.setLogTarget(outTarget, param)</h3>
+
+<ul>
+<li>
+<p><code>outTarget:int</code> - specify the target type of the LogSystem.</p>
+
+<ul>
+<li><code>Log.OUT2IDE = 0</code> - write log to <code>Flash Builder Console</code> use <code>trace</code>.</li>
+
+<li><code>Log.OUT2LC = 1</code> - write log use <code>TCP Socket</code> to <code>LogServer</code>.</li>
+
+<li><code>Log.OUT2API = 2</code> - call <code>javascript</code>&#8217;s <code>API.log</code> to write log.</li>
+
+<li><code>Log.OUT2CUSTOM = 3</code> - write log use <code>ICustomOutput</code> interface.</li>
+
+<li><code>Log.OUT2SO = 4</code> - write log use <code>ShareObject</code>.</li>
+</ul>
+</li>
+
+<li>
+<p><code>param:Object=null</code></p>
+</li>
+</ul>
+
+<h3 id='logsetxxxenableenable'>Log.setXXXEnable(enable)</h3>
+
+<p>Here <code>XXX</code> has five function name:</p>
+
+<ul>
+<li><code>Log.setTraceEnable(enable)</code> - enable trace log.</li>
+
+<li><code>Log.setErrorEnable(enable)</code> - enable error log.</li>
+
+<li><code>Log.setThrowEnable(enable)</code> - enable throw log.</li>
+
+<li><code>Log.setDebugEnable(enable)</code> - enable debug log.</li>
+
+<li><code>Log.setWarnEnable(enable)</code> - enable warn log.</li>
+</ul>
+
+<h3 id='logxxxfunname__args'>Log.XXX(funName, &#8230; args)</h3>
+
+<p>Here <code>XXX</code> has five function name:</p>
+
+<ul>
+<li><code>Log.trace(funName, ... args)</code> - write trace log with <code>funName</code> and <code>args</code>.</li>
+
+<li><code>Log.error(funName, ... args)</code> - write error log with <code>funName</code> and <code>args</code>.</li>
+
+<li><code>Log.exthrow(funName, ... args)</code> - write exthrow log with <code>funName</code> and <code>args</code>.</li>
+
+<li><code>Log.debug(funName, ... args)</code> - write debug log with <code>funName</code> and <code>args</code>.</li>
+
+<li><code>Log.warn(funName, ... args)</code> - write warn log with <code>funName</code> and <code>args</code>.</li>
+</ul>
+
+<h3 id='logloglogtype_clsname_funname__args'>Log.log(logType, clsName, funName, &#8230; args)</h3>
+
+<p>Write log with <code>logType</code> and <code>clsName</code>, <code>funName</code>, <code>args</code> where <code>logType</code> can be:<code>&quot;Trace&quot;</code>, <code>&quot;Error&quot;</code>, <code>&quot;Throw&quot;</code>, <code>&quot;Debug&quot;</code>, <code>&quot;Warn&quot;</code> and so on.</p>
+
+<h3 id='loggetlsologlist'>Log.getLSOLogList()</h3>
+
+<h3 id='logsetcustomout'>Log.setCustomOut()</h3>
+
+<h3 id='loggetallloglist'>Log.getAllLogList()</h3>
+
+<h3 id='logclearconfig'>Log.clearConfig()</h3>
+
+<h3 id='logloadconfigcontent'>Log.loadConfigContent()</h3>
+
+<h3 id='logloadconfig'>Log.loadConfig()</h3>
+
+<h2 id='main_functions'>Main Functions</h2>
+
+<h3 id='attachclassnameclassname'>attachClassName(className)</h3>
+
+<h3 id='getclsname'>getClsName()</h3>
+
+<h3 id='getlogcount'>getLogCount()</h3>
+
+<h3 id='xxxfunname__args'>XXX(funName, &#8230; args)</h3>
+
+<p>Here <code>XXX</code> has five function name:</p>
+
+<ul>
+<li><code>trace(funName, ... args)</code> - write trace log with <code>funName</code> and <code>args</code>.</li>
+
+<li><code>error(funName, ... args)</code> - write error log with <code>funName</code> and <code>args</code>.</li>
+
+<li><code>exthrow(funName, ... args)</code> - write exthrow log with <code>funName</code> and <code>args</code>.</li>
+
+<li><code>debug(funName, ... args)</code> - write debug log with <code>funName</code> and <code>args</code>.</li>
+
+<li><code>warn(funName, ... args)</code> - write warn log with <code>funName</code> and <code>args</code>.</li>
+</ul>
+
+<h3 id='loglogtype_clsname_funname__args'>log(logType, clsName, funName, &#8230; args)</h3>
+
+<p>Write log with <code>logType</code> and <code>clsName</code>, <code>funName</code>, <code>args</code> where <code>logType</code> can be:<code>&quot;Trace&quot;</code>, <code>&quot;Error&quot;</code>, <code>&quot;Throw&quot;</code>, <code>&quot;Debug&quot;</code>, <code>&quot;Warn&quot;</code> and so on.</p>
+
+<h2 id='debug_functions'>Debug Functions</h2>
+
+<h2 id='utility_functions'>Utility Functions</h2>
+	</div>
+	<div class="clear"></div>
+</div>
+
+<div id="foot">
+	<div id="copy" class="content">
+		nkstudios.github.com &copy; 2012
+		<a href="http://www.renzhemao.com/">NKStudios</a>
+		<!-- (<a href="/contact">contact</a>) -->
+		- made by dugang &#x2665;
+	</div>
+</div>
+
+</body>
+</html>
