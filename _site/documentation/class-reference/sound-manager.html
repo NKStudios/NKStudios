@@ -60,6 +60,82 @@
 	
 	<div id="content">
 		<h2 id='description'>Description</h2>
+
+<p>Here has two type <code>SoundManager</code> instance:</p>
+
+<ul>
+<li><code>SoundManagerName.BGM</code> - use for background sound.</li>
+
+<li><code>SoundManagerName.SFX</code> - use for fx sound.</li>
+</ul>
+
+<p><code>SoundManager</code> initialize like this: <pre class='actionscript'>
+SoundManager.getSoundManager(SoundManagerName.SFX)
+SoundManager.getSoundManager(SoundManagerName.SFX)
+</pre></p>
+<pre class='actionscript'>
+import com.tencent.fge.engine.sound.SoundManager;<br />
+import com.tencent.fge.engine.sound.SoundPlayer;<br />
+import com.tencent.tnt.sound.SoundManagerName;<br />
+class TestA
+{
+	private var m_sndGameOver:SoundPlayer;<br />
+	private function initialize():void
+	{
+		var soundMgr:SoundManager = SoundManager.getSoundManager(SoundManagerName.SFX);<br />
+		m_sndGameOver = soundMgr.createSound();
+		m_sndGameOver.url = "assets/battle/ui/gameover.mp3";
+		m_sndGameOver.load();
+	}<br />
+	public function playGameOver():void
+	{
+		m_sndGameOver.play();
+	}<br />
+	public function unload():void
+	{
+		if (m_sndPlayer)
+		{
+			SoundManager.cleanSound(SoundManagerName.SFX, m_sndGameOver);
+			m_sndGameOver = null;
+		}
+	}
+}
+</pre>
+<h2 id='main_static_function'>Main Static Function</h2>
+
+<h3 id='getsoundmanager'>getSoundManager()</h3>
+
+<h3 id='createsound'>createSound()</h3>
+
+<h3 id='playsound'>playSound()</h3>
+
+<h3 id='stopsound'>stopSound()</h3>
+
+<h3 id='cleansound'>cleanSound()</h3>
+
+<h3 id='cleanall'>cleanAll()</h3>
+
+<h3 id='setvolume'>setVolume()</h3>
+
+<h3 id='getvolume'>getVolume()</h3>
+
+<h2 id='main_function'>Main Function</h2>
+
+<h3 id='getsoundmanager'>getSoundManager()</h3>
+
+<h3 id='createsound'>createSound()</h3>
+
+<h3 id='playsound'>playSound()</h3>
+
+<h3 id='stopsound'>stopSound()</h3>
+
+<h3 id='cleansound'>cleanSound()</h3>
+
+<h3 id='cleanall'>cleanAll()</h3>
+
+<h3 id='setvolume'>setVolume()</h3>
+
+<h3 id='getvolume'>getVolume()</h3>
 	</div>
 	<div class="clear"></div>
 </div>

@@ -4,4 +4,9 @@ title: Documentation - NKStudios
 breadcrumbs: Class Reference
 ---
 ### Core and System
-* [Log](/documentation/class-reference/log-system.html) - Log system.
+* [Log system](/documentation/class-reference/log-system.html)
+
+
+### Sound
+* [SoundManager](/documentation/class-reference/sound-manager.html)
+* [SoundPlayer](/documentation/class-reference/sound-manager.html)
