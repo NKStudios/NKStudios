@@ -46,7 +46,10 @@
 </div>
 
 <div class="wideContent">
-	<div id="sidebar"></div>
+	<div id="sidebar">
+		{{ page.url | sidebar_content }}
+	</div>
+	
 	<div id="content">
 		{{ content }}
 	</div>
