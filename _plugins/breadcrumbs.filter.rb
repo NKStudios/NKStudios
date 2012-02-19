@@ -1,3 +1,5 @@
+require "find"
+
 module BreadcrumbsFilters
 
   # Return the url's breadcrumbs
@@ -44,7 +46,7 @@ module BreadcrumbsFilters
   # Return the last documention name
   def documention_name(url, idx)
   	@name_arr = url.split("/")
-
+		
 		@pos = @name_arr[idx].index("-")
 		if @pos != nil
 			@name = ""
@@ -70,6 +72,23 @@ module BreadcrumbsFilters
   	end
   	
   	@div1 = '<h2>' + documention_name(url, 2) + '</h2>'
+		@file_cnt = 0
+		Find.find("documentation/class-reference") do |f|
+			if File.file?(f)
+				@file_cnt += 1
+			end
+		end
+		
+		if @file_cnt > 0
+			@div1 += '<ul>' + "\n"
+			Find.find("documentation/class-reference") do |f|
+				if File.file?(f)
+					f = f.gsub(".md", "")
+					@div1 += '<li><a href="/' + f + '.html">' + documention_name(f, -1) + '</a></li>' + "\n"
+				end
+			end
+			@div1 += '</ul>' + "\n"
+		end
   	
   	# 2. gen function sidebar.
   	@div2 = ""
@@ -77,7 +96,7 @@ module BreadcrumbsFilters
   		return @div1 + @div2
   	end
   	
-		@div2 = '<div id="fragmentMenu">' + "\n\t" + '<h2>' + documention_name(url, @arr_len - 1) + '</h2>' + "\n" + '</div>'
+		@div2 = '<div id="fragmentMenu">' + "\n\t" + '<h2>' + documention_name(url, -1) + '</h2>' + "\n" + '</div>'
 		return @div1 + @div2
 	end
 	
