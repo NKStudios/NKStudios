@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<title>Documentation - NKStudios</title>
+	<link rel="stylesheet" type="text/css" href="/templates/impact/screen.css?v5" />
+	<link rel="Shortcut Icon" href="/templates/impact/favicon.png" />
+	
+	<script type="text/javascript" src="/templates/impact/jquery-1.4.3.min.js"></script>
+	<script type="text/javascript" src="/templates/impact/impact.js?v5></script>
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-571256-10']);
+		_gaq.push(['_trackPageview']);
+		
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gs, s);
+		})();
+	</script>
+</head>
+	
+<body>
+<div id="title">
+	<div class="content">
+		<a href="/" id="impact"><img src="/templates/impact/impact.png" alt="Impact"/></a>
+
+		<div id="menu">
+			<!-- <a href="/buy-impact.html">Buy</a> -->
+			<a href="/documentation.html">Docs</a>
+			<!-- <a href="/tools.html">Tools</a> -->
+			<a href="http://www.renzhemao.com/bbb/index.php">Forums</a>
+			<!-- <a href="/blog.html">Blog</a> -->
+		</div>
+	</div>
+	<div class="clear"></div>
+</div>
+
+<div id="breadcrumbs">
+	<div class="content">
+		<h1 class="content">
+			<a href="/documentation.html">Documentation</a> <span class="sub">&raquo;</span>
+			<a href="/documentation/class-reference.html">Class Reference</a> <span class="sub">&raquo;</span>
+			 Menu Manager
+		</h1>
+	</div>
+</div>
+
+<div class="wideContent">
+	<div id="sidebar">
+		<h2>Class Reference</h2><ul>
+<li><a href="/documentation/class-reference/ui-system.html">Ui System</a></li>
+<li><a href="/documentation/class-reference/sound-manager.html">Sound Manager</a></li>
+<li><a href="/documentation/class-reference/menu-manager.html">Menu Manager</a></li>
+<li><a href="/documentation/class-reference/log-system.html">Log System</a></li>
+</ul>
+<div id="fragmentMenu">
+	<h2>Menu Manager</h2>
+</div>
+	</div>
+	
+	<div id="content">
+		<h2 id='synopsis'>Synopsis</h2>
+<pre class='actionscript'>
+import com.tencent.fge.engine.ui.menu.MenuManager;
+import com.tencent.fge.engine.ui.menu.Menu;
+import com.tencent.tnt.ui.data.MenuID;<br />
+public class PanelMenu
+{
+    private var m_menu:Menu;
+    private var m_mgrMenu:MenuManager;
+    
+    public function initialize(menuMgr:MenuManager):void
+	{
+        m_mgrMenu = menuMgr;
+        m_menu = m_mgrMenu.createMenu(MenuID.MENU_PLAYER_BATTLE);
+        m_menu.addMenuItem("openUserPanel", "View Profile", 1, null);
+        m_menu.addMenuItem("addFriend", "Add Friend", 2, null);
+        m_menu.addMenuItem("setChatWidth", "Chat With", 3, null);
+        m_menu.setMenuItemEnable("addFriend", true);
+    }
+	
+    public function show(stageX:int, stageY:int, seatIndex:Object):void
+	{
+        m_menu.hide();
+        m_menu.popup(stageX, stageY, seatIndex, onMenuItemClicked);
+    }
+
+	private function onMenuItemClicked(menuEvent:MenuEvent):void
+	{
+		switch (menuEvent.id)
+		{
+			case "openUserPanel":
+				// do something when click "View Profile".
+				break;
+				
+			case "addFriend":
+				// do something
+				break;
+				
+			case "setChatWidth":
+				// do something
+				break;
+	}
+	
+    public function finalize():void
+	{
+        m_mgrMenu.releaseMenu("PlayerMenu");
+        m_mgrMenu = null;
+    }
+}
+</pre>
+<h2 id='menu_manager'>Menu Manager</h2>
+
+<h3 id='initialize'>initialize()</h3>
+
+<ul>
+<li>menuConfig:MenuConfig=null - as default menu config.</li>
+</ul>
+
+<h3 id='createmenu'>createMenu()</h3>
+
+<ul>
+<li>menuName:String - the unique menu id name.</li>
+
+<li>menuConfig:MenuConfig=null</li>
+</ul>
+
+<h3 id='releasemenu'>releaseMenu()</h3>
+
+<ul>
+<li>menuName:String</li>
+</ul>
+
+<h3 id='addmenu'>addMenu()</h3>
+
+<ul>
+<li>menu:Menu</li>
+</ul>
+
+<h3 id='removemenu'>removeMenu()</h3>
+
+<ul>
+<li>menu:Menu</li>
+</ul>
+
+<h3 id='getmenu'>getMenu()</h3>
+
+<ul>
+<li>menuName:String</li>
+</ul>
+
+<h2 id='menu'>Menu</h2>
+
+<h3 id='create'>create()</h3>
+
+<ul>
+<li>stage:DisplayObjectContainer</li>
+
+<li>container:DisplayObjectContainer</li>
+
+<li>menuName:String</li>
+
+<li>menuConfig:MenuConfig=null</li>
+</ul>
+
+<h3 id='release'>release()</h3>
+
+<h3 id='settextformat'>setTextFormat()</h3>
+
+<ul>
+<li>textFormat1:TextFormat</li>
+
+<li>textFormat2:TextFormat</li>
+
+<li>textFormat3:TextFormat</li>
+
+<li>textFormat4:TextFormat</li>
+</ul>
+
+<h3 id='settexture'>setTexture()</h3>
+
+<ul>
+<li>texListBg:Class</li>
+
+<li>texItemBg1:Class</li>
+
+<li>texItemBg2:Class</li>
+
+<li>texItemBg3:Class</li>
+
+<li>texItemBg4:Class</li>
+
+<li>texItemIconChild:Class</li>
+</ul>
+
+<h3 id='setcontainersize'>setContainerSize()</h3>
+
+<ul>
+<li>width:Number</li>
+
+<li>height:Number</li>
+</ul>
+
+<h3 id='addmenuitem'>addMenuItem()</h3>
+
+<ul>
+<li>itemName:String</li>
+
+<li>label:*</li>
+
+<li>priority:int</li>
+
+<li>listener:Function</li>
+</ul>
+
+<h3 id='removemenuitem'>removeMenuItem()</h3>
+
+<ul>
+<li>itemName:String</li>
+</ul>
+
+<h3 id='getmenuitem'>getMenuItem()</h3>
+
+<ul>
+<li>itemName:String</li>
+</ul>
+
+<h3 id='setmenuitemstate'>setMenuItemState()</h3>
+
+<ul>
+<li>itemName:String</li>
+
+<li>state:int</li>
+</ul>
+
+<h3 id='setmenuitemenable'>setMenuItemEnable()</h3>
+
+<ul>
+<li>itemName:String</li>
+
+<li>enable:Boolean</li>
+</ul>
+
+<h3 id='get_haspopup'>get hasPopup()</h3>
+
+<h3 id='popup'>popup()</h3>
+
+<ul>
+<li>x:Number</li>
+
+<li>y:Number</li>
+
+<li>menuTarget:Object=null</li>
+
+<li>listener:Function=null</li>
+</ul>
+
+<h3 id='hide'>hide()</h3>
+
+<h2 id='menuevent'>MenuEvent</h2>
+
+<ul>
+<li><code>menuTarget</code>:Object = null</li>
+
+<li><code>id</code>:String = &#8221;&#8221;</li>
+
+<li><code>item</code>:MenuItem</li>
+
+<li><code>label</code>:*</li>
+
+<li><code>menu</code>:Menu</li>
+
+<li><code>userdata</code>:*</li>
+</ul>
+	</div>
+	<div class="clear"></div>
+</div>
+
+<div id="foot">
+	<div id="copy" class="content">
+		nkstudios.github.com &copy; 2012
+		<a href="http://www.renzhemao.com/">NKStudios</a>
+		<!-- (<a href="/contact">contact</a>) -->
+		- made by dugang &#x2665;
+	</div>
+</div>
+
+</body>
+</html>
