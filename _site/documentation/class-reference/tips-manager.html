@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<title>Documentation - NKStudios</title>
+	<link rel="stylesheet" type="text/css" href="/templates/impact/screen.css?v5" />
+	<link rel="Shortcut Icon" href="/templates/impact/favicon.png" />
+	
+	<script type="text/javascript" src="/templates/impact/jquery-1.4.3.min.js"></script>
+	<script type="text/javascript" src="/templates/impact/impact.js?v5></script>
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-571256-10']);
+		_gaq.push(['_trackPageview']);
+		
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gs, s);
+		})();
+	</script>
+</head>
+	
+<body>
+<div id="title">
+	<div class="content">
+		<a href="/" id="impact"><img src="/templates/impact/impact.png" alt="Impact"/></a>
+
+		<div id="menu">
+			<!-- <a href="/buy-impact.html">Buy</a> -->
+			<a href="/documentation.html">Docs</a>
+			<!-- <a href="/tools.html">Tools</a> -->
+			<a href="http://www.renzhemao.com/bbb/index.php">Forums</a>
+			<!-- <a href="/blog.html">Blog</a> -->
+		</div>
+	</div>
+	<div class="clear"></div>
+</div>
+
+<div id="breadcrumbs">
+	<div class="content">
+		<h1 class="content">
+			<a href="/documentation.html">Documentation</a> <span class="sub">&raquo;</span>
+			<a href="/documentation/class-reference.html">Class Reference</a> <span class="sub">&raquo;</span>
+			 Tips Manager
+		</h1>
+	</div>
+</div>
+
+<div class="wideContent">
+	<div id="sidebar">
+		<h2>Class Reference</h2><ul>
+<li><a href="/documentation/class-reference/ui-system.html">Ui System</a></li>
+<li><a href="/documentation/class-reference/tips-manager.html">Tips Manager</a></li>
+<li><a href="/documentation/class-reference/sound-manager.html">Sound Manager</a></li>
+<li><a href="/documentation/class-reference/menu-manager.html">Menu Manager</a></li>
+<li><a href="/documentation/class-reference/log-system.html">Log System</a></li>
+<li><a href="/documentation/class-reference/cursor-manager.html">Cursor Manager</a></li>
+</ul>
+<div id="fragmentMenu">
+	<h2>Tips Manager</h2>
+</div>
+	</div>
+	
+	<div id="content">
+		<h2 id='synopsis'>Synopsis</h2>
+
+<p>There have two way to use TipsManager. One add tips for specified object by using <code>addTipsObject()</code> mothod. this use default <code>ITipsSprite</code> has the type <code>TipsID.TIPS_TOOL</code>. <pre class='actionscript'>
+public class MallDialog extends UISprite
+{
+	private var m_tipMgr:TipsManager;
+	private var m_btnRestore:SimpleButton;<br />
+	override public function init():void
+	{
+		m_tipMgr = TipsManager.getInstance();
+		m_tipMgr.addTipsObject(m_btnRestore, "&lt;font size='12'>Restore Avatar&lt;font>");
+	}
+}
+</pre></p>
+
+<p>One add tips ui with implements <code>ITipsSprite</code> by using <code>addTipsUI()</code> mothod. this use your own <code>ITipsSprite</code> has the type you define in <code>com.tencent.tnt.ui.data.TipsID</code>.</p>
+<pre class='actionscript'>
+//In com.tencent.tnt.component.ComponentManager.as create it.
+public function initialize():void
+{
+	var tipsMgr:TipsManager = TipsManager.getInstance();
+	tipsMgr.addTipsUI(TipsID.TIPS_SKILL, getTipsUI(TipsID.TIPS_SKILL));
+	tipsMgr.addTipsUI(TipsID.TIPS_TOOL, getTipsUI(TipsID.TIPS_TOOL));
+	tipsMgr.setDefaultTipsUI(getTipsUI(TipsID.TIPS_TOOL));
+}
+
+public class BaseTipsUI extends UISprite implements ITipsSprite
+{
+	override public function show():void
+	{
+	}
+	
+	override public function hide():void
+	{
+	}
+	
+	public function popup(popUpX:int, popUpY:int, wScreen:int, hScreen:int):void
+	{
+	}
+	
+	public function setTextTips(_tips:String):void
+	{
+	}
+	
+	public function setRichTips(_tips:DisplayObject):void
+	{
+	}
+	
+	public function setUserTips(_tips:*):void
+	{
+	}
+}
+
+// In you module, use it like this.
+tipsMgr.addTipsObject(m_btnRestore, skillInfo, TipsID.TIPS_SKILL);
+</pre>
+<h2 id='tipsmanager'>TipsManager</h2>
+
+<h3 id='initialize'>initialize()</h3>
+
+<ul>
+<li>tipsDefaultUI:ITipsSprite=null</li>
+
+<li>tipsdata:String=&#8221;tipsdata&#8221;</li>
+
+<li>tipstype:String=&#8221;tipstype&#8221;</li>
+</ul>
+
+<h3 id='setdefaulttipsui'>setDefaultTipsUI()</h3>
+
+<ul>
+<li>tipsDefaultUI:ITipsSprite</li>
+</ul>
+
+<h3 id='addtipsui'>addTipsUI()</h3>
+
+<ul>
+<li>tipsName:String</li>
+
+<li>tipsSprite:ITipsSprite</li>
+</ul>
+
+<h3 id='removetipsui'>removeTipsUI()</h3>
+
+<ul>
+<li>tipsName:String</li>
+</ul>
+
+<h3 id='addtipsobject'>addTipsObject()</h3>
+
+<ul>
+<li>
+<p>target:DisplayObject</p>
+</li>
+
+<li>
+<p>tipsdata:*</p>
+</li>
+
+<li>
+<p>tipstype:*=null</p>
+
+<h3 id='removetipsobject'>removeTipsObject()</h3>
+</li>
+
+<li>
+<p>target:DisplayObject</p>
+</li>
+</ul>
+
+<h2 id='itipssprite'>ITipsSprite</h2>
+
+<h3 id='popup'>popup()</h3>
+
+<ul>
+<li>popUpX:int</li>
+
+<li>popUpY:int</li>
+
+<li>wScreen:int</li>
+
+<li>hScreen:int</li>
+</ul>
+
+<h3 id='show'>show()</h3>
+
+<h3 id='hide'>hide()</h3>
+
+<h3 id='settexttips'>setTextTips()</h3>
+
+<ul>
+<li>tips:String</li>
+</ul>
+
+<h3 id='setrichtips'>setRichTips()</h3>
+
+<ul>
+<li>tips:DisplayObject</li>
+</ul>
+
+<h3 id='setusertips'>setUserTips()</h3>
+
+<ul>
+<li>tips:*</li>
+</ul>
+	</div>
+	<div class="clear"></div>
+</div>
+
+<div id="foot">
+	<div id="copy" class="content">
+		nkstudios.github.com &copy; 2012
+		<a href="http://www.renzhemao.com/">NKStudios</a>
+		<!-- (<a href="/contact">contact</a>) -->
+		- made by dugang &#x2665;
+	</div>
+</div>
+
+</body>
+</html>

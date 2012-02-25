@@ -51,9 +51,11 @@
 	<div id="sidebar">
 		<h2>Class Reference</h2><ul>
 <li><a href="/documentation/class-reference/ui-system.html">Ui System</a></li>
+<li><a href="/documentation/class-reference/tips-manager.html">Tips Manager</a></li>
 <li><a href="/documentation/class-reference/sound-manager.html">Sound Manager</a></li>
 <li><a href="/documentation/class-reference/menu-manager.html">Menu Manager</a></li>
 <li><a href="/documentation/class-reference/log-system.html">Log System</a></li>
+<li><a href="/documentation/class-reference/cursor-manager.html">Cursor Manager</a></li>
 </ul>
 <div id="fragmentMenu">
 	<h2>Ui System</h2>
@@ -61,47 +63,8 @@
 	</div>
 	
 	<div id="content">
-		<h2 id='description'>Description</h2>
+		<h2 id='synopsis'>Synopsis</h2>
 
-<p>Here has two type <code>SoundManager</code> instance:</p>
-
-<ul>
-<li><code>SoundManagerName.BGM</code> - use for background sound.</li>
-
-<li><code>SoundManagerName.SFX</code> - use for fx sound.</li>
-</ul>
-
-<p><code>SoundManager</code> initialize like this: <pre class='actionscript'>
-SoundManager.getSoundManager(SoundManagerName.SFX)
-SoundManager.getSoundManager(SoundManagerName.SFX)
-</pre></p>
-<pre class='actionscript'>
-import com.tencent.fge.engine.sound.SoundManager;
-import com.tencent.fge.engine.sound.SoundPlayer;
-import com.tencent.tnt.sound.SoundManagerName;<br />
-class TestA
-{
-	private var m_sndGameOver:SoundPlayer;<br />
-	private function initialize():void
-	{
-		m_sndGameOver = SoundManager.createSound(SoundManagerName.SFX);
-		m_sndGameOver.url = "assets/battle/ui/gameover.mp3";
-		m_sndGameOver.load();
-	}<br />
-	public function playGameOver():void
-	{
-		m_sndGameOver.play();
-	}<br />
-	public function destroy():void
-	{
-		if (m_sndPlayer)
-		{
-			SoundManager.cleanSound(SoundManagerName.SFX, m_sndGameOver);
-			m_sndGameOver = null;
-		}
-	}
-}
-</pre>
 <h2 id='main_static_function'>Main Static Function</h2>
 
 <h3 id='get_width'>get width()</h3>
